@@ -9,6 +9,10 @@ const handleAddTodo = (addedTodo) => {
   todoList.value.push(addedTodo);
 }
 
+const handleRemoveTodo = (index) => {
+  todoList.value.splice(index, 1);
+}
+
 </script>
 
 <template>
@@ -17,7 +21,7 @@ const handleAddTodo = (addedTodo) => {
     <add-todo-component @handleAddTodo="handleAddTodo"/>
     </div>
     <div class="flex flex-row mx-10 justify-center items-center">
-     <TodoListingComponent :todo-list="todoList" />
+     <TodoListingComponent :todo-list="todoList" @handle-remove-todo="handleRemoveTodo"/>
     </div>
   </div>
 </template>
