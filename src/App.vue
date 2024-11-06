@@ -1,30 +1,26 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import QuoteGeneratorComponent from "./components/QuoteGeneratorComponent.vue";
+import QuoteDisplayComponent from "./components/QuoteDisplayComponent.vue";
+import {ref} from "vue";
+
+let selectedQuote = ref(null);
+
+const handleGetQuote = (quote: any) => {
+  console.log(quote)
+  selectedQuote.value = quote;
+}
+
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="flex flex-col h-full w-full bg-green-500 bg-gradient-to-tr from-green-500 to-cyan-500">
+    <div class="flex flex-col mx-10">
+      <div class="flex flex-row">
+        <QuoteGeneratorComponent @handleGetQuote="handleGetQuote"/>
+      </div>
+      <div class="flex flex-row">
+        <QuoteDisplayComponent :quote="selectedQuote" />
+      </div>
+    </div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
